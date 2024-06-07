@@ -1,0 +1,66 @@
+/* Prevent padding and border from affecting element width. */
+*,
+::before,
+::after {
+    cursor: none;
+    box-sizing: border-box;
+}
+
+/* Remove the margin in all browsers */
+body {
+    background-color: hsla(30, 100%, 88%, 0);
+    margin: 0;
+    padding: 0;
+    line-height: inherit;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*this is the id of the moveble object*/
+#sample-output {
+    position: fixed;
+    border-radius: 100%;
+    background-color: hsla(30, 81%, 72%, 1);
+}
+
+
+.pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: hsl(30, 80%, 72%);
+    box-shadow: 0 0 0 rgba(237, 187, 137, 0.5);
+    animation: none;
+}
+
+.pulse.active {
+    animation: pulse 0.05s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+/*this is the animation of the pulse element , it has a variable stated in the background so it can be modified through code on JS*/
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+        background: radial-gradient(circle, var(--pulse-background) 10%, rgba(255, 215, 175, 0) 57%);
+        box-shadow: 0 0 0 20px rgba(241, 184, 126, 0);
+    }
+
+    70% {
+        transform: scale(1);
+        background: radial-gradient(circle, var(--pulse-background) 7%, rgba(251, 245, 178, 0) 60%);
+        box-shadow: 0 0 0 0 rgba(255, 244, 232, 0.016);
+    }
+}
+
+span {
+    color: rgb(6, 7, 14);
+    font-weight: bold;
+    transition: 1s;
+    position: absolute;
+    user-select: none;
+}

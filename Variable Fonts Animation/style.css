@@ -1,0 +1,66 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/* Define the font face for 'Roboto Flex'. */
+@font-face {
+    font-family: 'Roboto Flex';
+    src: url('RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght.ttf');
+    font-weight: 100 1000;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+    font-family: 'Roboto Flex';
+    background-color: rgb(255, 255, 255);
+    user-select: none;
+}
+
+body.active {
+    animation: shiftBackground 1s infinite;
+    transition: 2s;
+}
+
+@keyframes shiftBackground {
+    0% {
+        background-color: rgb(255, 255, 255);
+    }
+
+    50% {
+        background-color: rgb(30, 144, 255);
+    }
+
+    100% {
+        background-color: rgb(255, 69, 0);
+    }
+}
+
+#text {
+    margin: 10%;
+    padding-top: 5%;
+    font-size: 5rem;
+    text-align: center;
+    transition: 0.1s;
+}
+
+#text.active {
+    animation: lightTextShadow 0.5s infinite linear;
+}
+
+
+@keyframes lightTextShadow {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        color: rgba(255, 0, 0.2);
+    }
+
+    100% {
+        text-shadow: 0 0 5px rgba(238, 130, 238, 0.5);
+        color: rgba(238, 130, 238, 0.2);
+    }
+}
