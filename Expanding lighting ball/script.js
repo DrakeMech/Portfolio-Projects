@@ -1,13 +1,3 @@
-/*
- * Assignment 1: Paired Modelling
- * ------------------------------
- * Programming 2023, Interaction Design Bacherlor, Malmö University
- * 
- * This assignment is written by:
- * Cristache Stefan
- * Jabran Hayat
- */
-
 // The state should contain all the "moving" parts of your program, values that change.
 let state = Object.freeze({
     pointerEvent: { x: 0, y: 0 },
