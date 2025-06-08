@@ -82,5 +82,5 @@ function init() {
     }
 }
 
-// Start the application when the page loads
-window.onload = init;
+// Enable motion button
+document.getElementById('enableMotion').addEventListener('click', init);
