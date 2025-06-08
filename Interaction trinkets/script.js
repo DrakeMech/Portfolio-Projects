@@ -26,11 +26,9 @@ function updateGradient(x, y, z) {
         rgb(${235}, ${green}, ${186}), 
         rgb(${153}, ${255 - blue}, ${255}))`;
 
-    // Create a metallic-like border gradient using greyscale values
-    // We'll use normX to control the metallic "sheen"
-    const grey1 = Math.floor(120 + normX * 80); // 120-200
-    const grey2 = Math.floor(200 + normY * 40); // 200-240
-    const grey3 = Math.floor(180 + normZ * 60); // 180-240
+    const grey1 = Math.floor(100 + normX * 80); 
+    const grey2 = Math.floor(150 + normY * 40); 
+    const grey3 = Math.floor(130 + normZ * 60); 
 
     button.style.borderImage = `linear-gradient(${normY * 120}deg, 
         rgb(${grey1},${grey1},${grey1}) 0%, 
