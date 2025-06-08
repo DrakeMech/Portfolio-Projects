@@ -23,8 +23,19 @@ function updateGradient(x, y, z) {
     // Update the button's background gradient using the normalized values
     button.style.background = `linear-gradient(45deg, 
         rgb(${red}, ${255 - red}, ${blue / 2}), 
-        rgb(${255 - green}, ${green}, ${red / 2}), 
-        rgb(${blue}, ${255 - blue}, ${green / 2}))`;
+        rgb(${235}, ${green}, ${186}), 
+        rgb(${153}, ${255 - blue}, ${255}))`;
+
+    // Create a metallic-like border gradient using greyscale values
+    // We'll use normX to control the metallic "sheen"
+    const grey1 = Math.floor(120 + normX * 80); // 120-200
+    const grey2 = Math.floor(200 + normY * 40); // 200-240
+    const grey3 = Math.floor(180 + normZ * 60); // 180-240
+
+    button.style.borderImage = `linear-gradient(120deg, 
+        rgb(${grey1},${grey1},${grey1}) 0%, 
+        rgb(${grey2},${grey2},${grey2}) 50%, 
+        rgb(${grey3},${grey3},${grey3}) 100%) 1`;
 }
 
 // Handle gyroscope data
