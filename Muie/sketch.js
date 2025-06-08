@@ -11,7 +11,7 @@ https://www.pattvira.com/
 ----------------------------------------
 */
 
-let molds = []; let num = 200;
+let molds = []; let num = 1000;
 let d; 
 
 function updateSensorDist() {
@@ -34,6 +34,7 @@ function updateSensorDist() {
 
 let gyroX = 0;
 let gyroY = 0;
+let gyroButton; // Add this at the top
 
 // Request permission and listen for device orientation
 function setup() {
@@ -41,15 +42,12 @@ function setup() {
   angleMode(DEGREES);
   d = pixelDensity();
 
-  // Request permission for iOS 13+ devices
+  // Create the gyro access button for iOS
   if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-    DeviceOrientationEvent.requestPermission()
-      .then(response => {
-        if (response === 'granted') {
-          window.addEventListener('deviceorientation', handleGyro);
-        }
-      })
-      .catch(console.error);
+    gyroButton = createButton('Enable Gyro Control');
+    gyroButton.position(20, 20);
+    gyroButton.style('font-size', '18px');
+    gyroButton.mousePressed(requestGyroAccess);
   } else {
     // Non-iOS devices
     window.addEventListener('deviceorientation', handleGyro);
@@ -58,6 +56,19 @@ function setup() {
   for (let i=0; i<num; i++) {
     molds[i] = new Mold();
   } 
+}
+
+function requestGyroAccess() {
+  DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response === 'granted') {
+        window.addEventListener('deviceorientation', handleGyro);
+        if (gyroButton) gyroButton.hide();
+      } else {
+        alert('Gyro access denied.');
+      }
+    })
+    .catch(console.error);
 }
 
 function handleGyro(event) {
