@@ -11,7 +11,7 @@ https://www.pattvira.com/
 ----------------------------------------
 */
 
-let molds = []; let num = 3;
+let molds = []; let num = 300;
 let d; 
 
 function updateSensorDist() {
@@ -38,6 +38,7 @@ let gyroButton; // Add this at the top
 
 // Request permission and listen for device orientation
 function setup() {
+  pixelDensity(1); // Add this for lower-res rendering
   createCanvas(window.innerWidth, window.innerHeight);
   angleMode(DEGREES);
   d = pixelDensity();
@@ -77,9 +78,10 @@ function handleGyro(event) {
   gyroY = map(event.beta, -180, 180, 0, height);
 }
 
+let frameSkip = 2;
 function draw() {
-    background(0, 5);
-    loadPixels();
+  background(0, 5);
+  if (frameCount % frameSkip === 0) loadPixels();
   
     // Update sensorDist based on mouseY
     // updateSensorDist();
@@ -87,7 +89,7 @@ function draw() {
     for (let i = 0; i < num; i++) {
       if (key == "s") {
         molds[i].stop = true;
-        updatePixels();
+        if (frameCount % frameSkip === 0) updatePixels();
         noLoop();
       } else {
         molds[i].stop = false;
