@@ -32,7 +32,7 @@ function updateGradient(x, y, z) {
     const grey2 = Math.floor(200 + normY * 40); // 200-240
     const grey3 = Math.floor(180 + normZ * 60); // 180-240
 
-    button.style.borderImage = `linear-gradient(120deg, 
+    button.style.borderImage = `linear-gradient(${normY * 120}deg, 
         rgb(${grey1},${grey1},${grey1}) 0%, 
         rgb(${grey2},${grey2},${grey2}) 50%, 
         rgb(${grey3},${grey3},${grey3}) 100%) 1`;
