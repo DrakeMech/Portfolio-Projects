@@ -21,16 +21,16 @@ function updateGradient(x, y, z) {
     const blue = Math.floor(normZ * 255);
 
     // Update the button's background gradient using the normalized values
-    button.style.background = `linear-gradient(${normY * 360}deg, 
+    button.style.background = `linear-gradient(${normY * 45}deg, 
         rgb(${red}, ${255 - red}, ${blue / 2}), 
         rgb(${235}, ${green}, ${186}), 
         rgb(${153}, ${255 - blue}, ${255}))`;
 
-    const grey1 = Math.floor(100 + normX * 80); 
-    const grey2 = Math.floor(150 + normY * 40); 
-    const grey3 = Math.floor(130 + normZ * 60); 
+    const grey1 = Math.floor(100 + normX * 80); // 120-200
+    const grey2 = Math.floor(150 + normY * 40); // 200-240
+    const grey3 = Math.floor(130 + normZ * 60); // 180-240
 
-    button.style.borderImage = `linear-gradient(${normY * 90}deg, 
+    button.style.border= `linear-gradient(${normY * 120}deg, 
         rgb(${grey1},${grey1},${grey1}) 0%, 
         rgb(${grey2},${grey2},${grey2}) 50%, 
         rgb(${grey3},${grey3},${grey3}) 100%) 1`;
