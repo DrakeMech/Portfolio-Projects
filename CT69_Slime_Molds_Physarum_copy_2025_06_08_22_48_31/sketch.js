@@ -12,7 +12,7 @@ https://www.pattvira.com/
 */
 
 let molds = [];
-let num = 1000;
+let num = 500;
 let d;
 
 let gyroX = 0;
@@ -21,7 +21,7 @@ let gyroButton; // Add this at the top
 
 // Request permission and listen for device orientation
 function setup() {
-  pixelDensity(0.8); // Add this for lower-res rendering
+  pixelDensity(0.5); // Add this for lower-res rendering
   createCanvas(window.innerWidth, window.innerHeight);
   angleMode(DEGREES);
   d = pixelDensity();
@@ -50,9 +50,9 @@ function handleGyro(event) {
   gyroY = map(event.beta, -180, 180, 0, height);
 }
 
-let frameSkip = 2;
+let frameSkip = 3;
 function draw() {
-  background(2, 10);
+  background(1, 10);
   if (frameCount % frameSkip === 0) loadPixels();
   loadPixels();
 
