@@ -21,7 +21,7 @@ function updateGradient(x, y, z) {
     const blue = Math.floor(normZ * 255);
 
     // Update the button's background gradient using the normalized values
-    button.style.background = `linear-gradient(45deg, 
+    button.style.background = `linear-gradient(${normY * 45}deg, 
         rgb(${red}, ${255 - red}, ${blue / 2}), 
         rgb(${235}, ${green}, ${186}), 
         rgb(${153}, ${255 - blue}, ${255}))`;
