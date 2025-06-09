@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#button {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-size: 24px;
+    border: solid 5px #739023;
+}
+
+#button:hover {
+    background-color: #2cb332; /* Darker green */
+    cursor: pointer;
+}
+#button:active {
+    background-color: #478e49; /* Even darker green */
+    font-size: 0px;
+}
