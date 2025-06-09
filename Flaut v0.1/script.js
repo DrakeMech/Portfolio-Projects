@@ -78,3 +78,7 @@ button.addEventListener('mouseleave', () => {
     sendMIDI([0x80, 48, 0]);
     button.style.backgroundColor = '#4CAF50';
 });
+
+if (!('serial' in navigator)) {
+    alert('Web Serial API is not supported in this browser. Use Chrome or Edge.');
+}
