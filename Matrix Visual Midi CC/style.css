@@ -1,0 +1,63 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;     /* IE10+/Edge */
+}
+
+#button {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-size: 24px;
+    border: solid 5px #739023;
+}
+
+#button:hover {
+    background-color: #2cb332; /* Darker green */
+    cursor: pointer;
+}
+#button:active {
+    background-color: #478e49; /* Even darker green */
+    font-size: 0px;
+}
+
+.corner-circle {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    transition: filter 0.1s, background 0.1s;
+    pointer-events: none;
+    opacity: 0.85;
+}
+#circle-tl { top: 20px; left: 20px;    background: hsl(0, 80%, 60%);    } /* Red */
+#circle-tr { top: 20px; right: 20px;   background: hsl(120, 80%, 60%);  } /* Green */
+#circle-bl { bottom: 20px; left: 20px; background: hsl(240, 80%, 60%);  } /* Blue */
+#circle-br { bottom: 20px; right: 20px;background: hsl(45, 80%, 60%);   } /* Yellow/Orange */
+
+#circle-center {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    background:  hsl(277, 77%, 49%);
+    pointer-events: none;
+    border-radius: 50%;
+    opacity: 0.85;
+}
+
+#button-bar {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    z-index: 100;
+}
