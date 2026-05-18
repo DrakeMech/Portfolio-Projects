@@ -13,16 +13,6 @@
  * @property {(e: any) => void} onstatechange
  */
 
-/**
- * @typedef {Object} SensorData
- * @property {string} address
- * @property {number} [id]
- * @property {number} [x]
- * @property {number} [y]
- * @property {number} [z]
- * @property {number} [value]
- * @property {Array<number>} [args]
- */
 
 /**
  * @typedef {[number, number]} TouchPoint
