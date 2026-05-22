@@ -1,6 +1,9 @@
 # FSR Data Recorder
 
-A Python GUI application for recording Force Sensitive Resistor (FSR) sensor data from Arduino over USB serial connection.
+A Python GUI application for recording Force Sensitive Resistor (FSR) sensor data from Arduino over USB serial connection. 
+
+# Considerations
+This was written and commented using Copilot. I was just lazy writing it by hand since it's overall information that I might have missed for whoever wants to use it. 
 
 ## Features
 
@@ -23,6 +26,7 @@ A Python GUI application for recording Force Sensitive Resistor (FSR) sensor dat
 ```bash
 pip install -r requirements.txt
 ```
+2. Just execute run.bat (I wrote that so you wont bother running all of these lines, it saves time in my oppinon)
 
 ## Usage
 
