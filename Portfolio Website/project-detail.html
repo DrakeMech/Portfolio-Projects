@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\reset.css">
+    <link rel="stylesheet" href="css\style.css">
+    <title>Project - Stefan Cristache</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .projectDetailContainer {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #000;
+            color: #dde1e5;
+            overflow: hidden;
+        }
+
+        .projectHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #111;
+            border-bottom: 1px solid #333;
+            flex-shrink: 0;
+        }
+
+        .projectTitle {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .backButton {
+            padding: 10px 20px;
+            background: #dde1e5;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .backButton:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        .projectIframeContainer {
+            flex: 1;
+            overflow: hidden;
+            background: #000;
+            min-height: 0;
+        }
+
+        .projectIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+        .projectDescription {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #dde1e5;
+            padding: 20px;
+            background: #111;
+            border-top: 1px solid #333;
+            flex-shrink: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="projectDetailContainer">
+        <div class="projectHeader">
+            <h1 class="projectTitle" id="projectTitle">Project</h1>
+            <button class="backButton" onclick="goBack()">← Back to Portfolio</button>
+        </div>
+        <div class="projectIframeContainer">
+            <iframe id="projectFrame" class="projectIframe" loading="lazy" allowfullscreen ></iframe>
+        </div>
+        <div class="projectDescription" id="projectDescription" style="padding: 20px; background: #111; border-top: 1px solid #333;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectUrl = sessionStorage.getItem('projectUrl');
+            const projectName = sessionStorage.getItem('projectName');
+            const projectDescription = sessionStorage.getItem('projectDescription') === undefined ? "No description available." : sessionStorage.getItem('projectDescription');
+
+            if (projectUrl && projectName && projectDescription) {
+                document.getElementById('projectTitle').textContent = projectName;
+                document.getElementById('projectFrame').src = projectUrl;
+                document.getElementById('projectDescription').textContent = projectDescription;
+            } else {
+                document.getElementById('projectTitle').textContent = 'Project Not Found';
+            }
+        });
+
+        function goBack() {
+            window.location.href = 'Main.html';
+        }
+    </script>
+</body>
+
+</html>

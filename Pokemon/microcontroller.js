@@ -1,190 +1,108 @@
-import { catchCall } from './getPokemon.js';
+import { Espruino } from 'https://unpkg.com/ixfx/dist/io.js';
+import { catchCall} from './getPokemon.js';
+// Paste your puck code here
+const puckCode = `
+setTimeout(() => {
+  Puck.on('accel', function(a) {
+    if(a.acc.x >= 8000 || a.acc.x <= -8000)
+    Bluetooth.println(JSON.stringify({motionDetected: true}));
+    else 
+    // Bluetooth.println(JSON.stringify({motionDetected: false}));
+    console.log(a);
+  });
+  },100);
+  
+  Puck.accelOn(1.6);
+`
 
-// Map a value from one range to another between 0 and 1
-function mapping(min,max,value){
-  return (value - min) * (1 - 0) / (max - min) + 0;
+let state = Object.freeze({
+  puck: null,
+});
+
+const settings = Object.freeze({
+  device: `Puck.js 9c90`, // Put in the name of your device here, eg `Puck.js a123`
+  connectButton: document.querySelector(`#connect-button`),
+});
+
+/**
+ * Update state
+ * @param {Partial<state>} s 
+ */
+function updateState(s) {
+  state = Object.freeze({ ...state, ...s });
 }
 
-//Easing function for smooth transitions
-function easeInOutQuad(t) {
-  return t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-}
 
-function bellCurve(t) {
-  return Math.exp(-((t - 0.5) ** 2) / (2 * 0.1 ** 2));
-}
+/**
+ * Save state to localStorage
+ * @param {Partial<state>} s 
+ */
+function onData(event) {
+  const { puck } = state;
 
-function clamp(v, min, max) {
-  return Math.min(Math.max(v, min), max);
-}
+  // Don't even try to parse if it doesn't
+  // look like JSON
+  const data = event.data.trim(); // Remove line breaks etc
+  // console.log(data);
+  if (!data.startsWith(`{`)) return;
+  if (!data.endsWith(`}`)) return;
 
-function easeInExpo(x) {
-  return x === 0 ? 0 : Math.pow(2, 10 * x - 10);
-}
-
-// Add WebSocket bridge for address collection and logging
-const ws = new WebSocket('ws://localhost:8765'); // Change address as needed
-ws.onopen = () => {
-  console.log('Connected to sensor receiver WebSocket');
-};
-
-// ---- Utility functions ----
-// 
-let forceTimer = null;
-let forceStartTime = null;
-let forceActive = false;
-const FORCE_THRESHOLD = 20;
-const FORCE_DURATION = 400; // ms
-
-// Add canvas overlay for force circle
-const imageEl = document.getElementById('imageEl');
-let forceCircleCanvas = document.createElement('canvas');
-forceCircleCanvas.style.position = 'absolute';
-forceCircleCanvas.style.pointerEvents = 'none';
-forceCircleCanvas.width = 400;
-forceCircleCanvas.height = 400;
-forceCircleCanvas.style.left = '0px';
-forceCircleCanvas.style.top = '0px';
-document.body.appendChild(forceCircleCanvas);
-let ctx = forceCircleCanvas.getContext('2d');
-
-let currentRadius = 20;
-let targetRadius = 180;
-let animationFrame = null;
-
-function animateForceCircle() {
-  if (Math.abs(currentRadius - targetRadius) > 0.5) {
-    currentRadius += (targetRadius - currentRadius) * 0.09; // interpolation factor
-    drawForceCircle(currentRadius);
-    animationFrame = requestAnimationFrame(animateForceCircle);
-  } else {
-    currentRadius = targetRadius;
-    drawForceCircle(currentRadius);
-    animationFrame = null;
-  }
-}
-
-function drawForceCircle(radius) {
-  ctx.clearRect(0, 0, forceCircleCanvas.width, forceCircleCanvas.height);
-  // Draw threshold circle proportional to force scale
-  const minRadius = 20;
-  const maxRadius = 180;
-  const thresholdRatio = FORCE_THRESHOLD / 100; // 0..1
-  const thresholdRadius = minRadius + (maxRadius - minRadius) * thresholdRatio;
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(forceCircleCanvas.width/2, forceCircleCanvas.height/2, thresholdRadius, 0, Math.PI*2);
-  ctx.strokeStyle = 'rgba(0, 150, 255, 0.5)';
-  ctx.lineWidth = 2;
-  ctx.setLineDash([8, 8]);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
-  // Draw animated force circle
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(forceCircleCanvas.width/2, forceCircleCanvas.height/2, radius, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(255, 100, 100, 0.3)';
-  ctx.strokeStyle = 'rgba(255, 0, 0, 0.7)';
-  ctx.lineWidth = 4;
-  ctx.fill();
-  ctx.stroke();
-  ctx.restore();
-}
-
-function updateForceCircle(force) {
-  // Center canvas on imageEl
-  const rect = imageEl.getBoundingClientRect();
-  forceCircleCanvas.style.left = `${rect.left + window.scrollX + rect.width/2 - forceCircleCanvas.width/2}px`;
-  forceCircleCanvas.style.top = `${rect.top + window.scrollY + rect.height/2 - forceCircleCanvas.height/2}px`;
-  targetRadius = 20 + force * 1.6;
-  if (!animationFrame) animateForceCircle();
-}
-
-ws.onmessage = (event) => {
+  // So far so good, try to parse as JSON
   try {
-    const data = JSON.parse(event.data);
+    const d = JSON.parse(data);
+    console.log(d);
+    //whenever the data is sending the motionDetected being true
+    if (d.motionDetected) {
+     console.log("movement detected");
+    //turns On the Red Led and the Green one Off
+    puck.write(`digitalWrite(LED1,1)\n`);
+    puck.write(`digitalWrite(LED2,0)\n`);
+    //calls the cathing function that was exported from the getPokemon.js
+     catchCall();
+    };
+    setTimeout(()=>{
+      //Does the oposite of the previous snippet of code
+      puck.write(`digitalWrite(LED1,0)\n`);
+    puck.write(`digitalWrite(LED2,1)\n`);
+     },4800);
 
-    // Accelerometer -> Force
-    if (data.address === '/accelerometer') {
-      const ax = (typeof data.x === 'number') ? data.x : (Array.isArray(data.args) ? data.args[0] : undefined);
-      const ay = (typeof data.y === 'number') ? data.y : (Array.isArray(data.args) ? data.args[1] : undefined);
-      const az = (typeof data.z === 'number') ? data.z : (Array.isArray(data.args) ? data.args[2] : undefined);
-      if ([ax, ay, az].every(v => typeof v === 'number')) {
-        let force = Math.sqrt(ax*ax + ay*ay + az*az);
-        force = mapping(9,90,force); // Map to 0-1 range
-        force = bellCurve(force);
-        force = Math.min(Math.max(force * 100, 0), 100); // Scale to 0-100 and clamp
-        console.log("Force:", force.toFixed(2));
-        updateForceCircle(force);
-        if (force >= FORCE_THRESHOLD) {
-          if (!forceActive) {
-            forceActive = true;
-            forceStartTime = Date.now();
-            forceTimer = setTimeout(() => {
-              catchCall();
-              forceActive = false;
-              forceTimer = null;
-              forceStartTime = null;
-            }, FORCE_DURATION);
-          }
-        } else {
-          if (forceActive) {
-            // Cancel timer if force drops below threshold
-            clearTimeout(forceTimer);
-            forceActive = false;
-            forceTimer = null;
-            forceStartTime = null;
-          }
-        }
-      }
-    }
-
-    // Rotation vector -> (use x component -1..1)
-    if (data.address === '/rotationvector') {
-      const x = (typeof data.x === 'number') ? data.x : (Array.isArray(data.args) ? data.args[0] : undefined);
-      if (typeof x === 'number') {
-      console.log("Rotation vector x:", x);
-      }
-      return;
-    }
-
-    // Touch events
-    if (typeof data.address === 'string' && data.address.startsWith('/touch')) {
-      console.log("Touch data:", data);
-      return;
-    }
-
-    // Inclination
-    if (data.address === '/inclination') {
-      const v = (typeof data.value === 'number') ? data.value : (Array.isArray(data.args) ? data.args[0] : undefined);
-      if (typeof v === 'number') {
-        console.log("Inclination:", v);
-      }
-      return;
-    }
-
-    // Magnetic field
-    if (data.address === '/magneticfield') {
-      const mx = (typeof data.x === 'number') ? data.x : (Array.isArray(data.args) ? data.args[0] : undefined);
-      const my = (typeof data.y === 'number') ? data.y : (Array.isArray(data.args) ? data.args[1] : undefined);
-      const mz = (typeof data.z === 'number') ? data.z : (Array.isArray(data.args) ? data.args[2] : undefined);
-      if ([mx, my, mz].every(v => typeof v === 'number')) {
-        console.log("Magnetic field:", mx, my, mz);
-      }
-      return;
-    }
-
-  } catch (err) {
-    console.error('Invalid message:', event.data);
+  } catch (error) {
+    console.warn(error);
   }
 };
 
-ws.onerror = (error) => {
-  console.error('WebSocket error:', error);
+function onFail(error) {
+  console.log(`Failed to connect to device: ${error}`);
+}
+
+function onConnect(puck) {
+  console.log(`Connected to device!`);
+
+  updateState({ puck });
+  puck.writeScript(puckCode);
+  puck.addEventListener(`data`, onData);
+  return puck;
+}
+
+// Connect to a device
+async function connect() {
+  console.log("Connecting to device...");
+
+  // Filter by name, if defined in settings
+  const options = settings.device.length > 0 ? { name: settings.device } : {};
+
+  // Connect to Puck
+  Espruino.puck(options)
+    .then(onConnect)
+    .catch(onFail);
 };
 
-ws.onclose = () => {
-  console.warn('WebSocket connection closed');
+// Run once when the page is loaded
+function setup() {
+  const { connectButton } = settings;
+
+  // Add a click event listener to the connect button
+  connectButton.addEventListener(`click`, connect);
 };
 
+setup();

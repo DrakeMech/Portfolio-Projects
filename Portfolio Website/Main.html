@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\reset.css">
+    <link rel="stylesheet" href="css\style.css">
+    <script src="js\main.js"></script>
+    <script src="js\sideBar.js"></script>
+    <title>Stefan Cristache - Portfolio</title>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div style="display: none;" id="sideBar">
+        <div class="wrapp">
+            <button id="close" onclick="sideBarCl()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M32.7128 32.7128C31.7493 33.6764 30.187 33.6764 29.2234 32.7128L10.9042 14.3936C9.94068 13.43 9.94067 11.8678 10.9042 10.9042C11.8678 9.94067 13.4301 9.94067 14.3936 10.9042L32.7128 29.2234C33.6764 30.187 33.6764 31.7493 32.7128 32.7128Z"
+                        fill="white" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M10.9042 32.7128C9.94068 31.7493 9.94068 30.187 10.9042 29.2234L29.2235 10.9042C30.187 9.94067 31.7493 9.94067 32.7128 10.9042C33.6764 11.8678 33.6764 13.4301 32.7128 14.3936L14.3936 32.7128C13.4301 33.6764 11.8678 33.6764 10.9042 32.7128Z"
+                        fill="white" />
+                </svg>
+            </button>
+            <div class="wrappBio">
+                <h2>About</h2>
+                <p>[Have to fill in bio]</p>
+
+                <div id="linksEl">
+                    <a href="#" class="bioButton">Resume</a>
+                    <a href="#" class="bioButton">LinkedIn</a>
+                    <a href="#" class="bioButton">Instagram</a>
+                    <a href="#" class="bioButton">GitHub</a>
+                </div>
+
+                <div id="edList">
+                    <div class="titleEd">Contact</div>
+                    <div class="infoEd">
+                        <p>[Have to fill in email]</p>
+                        <p>[Have to fill in location]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER/MENU -->
+    <div class="menu">
+        <a href="Main.html" class="logo"></a>
+        <div class="name">Stefan Cristache</div>
+        <button onclick="sideBarOp()" class="menuButton">
+            <div class="menuBtn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="imageCover">
+        <div class="frontText">
+            <div class = "pageTitle">Portfolio</div>
+        </div>
+        <div class="scrollBox">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
+                <path d="M7.41228 20.722C7.8028 21.1126 8.43597 21.1126 8.82649 20.722L15.1905 14.3581C15.581 13.9675 15.581 13.3344 15.1905 12.9439C14.7999 12.5533 14.1668 12.5533 13.7762 12.9439L8.11938 18.6007L2.46253 12.9439C2.07201 12.5533 1.43884 12.5533 1.04832 12.9439C0.657793 13.3344 0.657793 13.9675 1.04832 14.3581L7.41228 20.722ZM7.11938 0.223877L7.11938 20.0149H9.11938L9.11938 0.223877L7.11938 0.223877Z" fill="white" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="bg"></div>
+
+    <!-- MAIN PROJECTS SECTION -->
+    <main>
+        <h2 class="projectsTitle">Digital Projects</h2>
+        <div class="projectsGrid">
+
+            <div class="projectCard" onclick="openProject('../CT69_Slime_Molds_Physarum_copy_2025_06_08_22_48_31/index.html', 'CT69 Slime Molds Physarum', 
+            'A project that simulates the behavior of slime molds, using the gyro to move the point of attraction of the cells (miscelanious)'
+            )">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="CT69 Slime Molds">
+                </div>
+                <div class="projectInfo">
+                    <h3>CT69 Slime Molds Physarum</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+
+            <div class="projectCard" onclick="openProject('../DrawingPadSynth/index.html', 'DrawingPad Synth', 'A drawing pad that generates sound based on pressure and pen movement.')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Drawing Pad">
+                </div>
+                <div class="projectInfo">
+                    <h3>DrawingPad Synth</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+
+            <div class="projectCard" onclick="openProject('../Flaut v0.1/index.html', 'Flaut v0.1',
+                'This project is a web-based midi controller that uses the Gyro to change pitch and the button to trigger a note.'
+            )">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Flaut">
+                </div>
+                <div class="projectInfo">
+                    <h3>Flaut v0.1</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+
+            <div class="projectCard" onclick="openProject('../Gradient_Button/index.html', 'Gradient Button', 
+                'A button with a gradient background that changes on phone orientation, resulting in a holographic effect (unfinished).')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Gradient Button">
+                </div>
+                <div class="projectInfo">
+                    <h3>Gradient Button</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+
+            <div class="projectCard" onclick="openProject('../Matrix Visual Midi CC/index.html', 'Matrix Visual MIDI CC')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Matrix Visual">
+                </div>
+                <div class="projectInfo">
+                    <h3>Matrix Visual MIDI CC</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+
+            <div class="projectCard" onclick="openProject('../Pokemon/index.html', 'Pokemon', 
+            'This project mainly uses the Pokemon API to display and catch pokemons by holding and gesticulating throwing motions with a Puck using Puck.js.')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Pokemon">
+                </div>
+                <div class="projectInfo">
+                    <h3>Pokemon</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // have to look this up
+        function openProject(projectUrl, projectName, projectDescription) {
+            sessionStorage.setItem('projectUrl', projectUrl);
+            sessionStorage.setItem('projectName', projectName);
+            sessionStorage.setItem('projectDescription', projectDescription);
+            window.location.href = 'project-detail.html';
+        }
+    </script>
+
+</body>
+
+</html>
