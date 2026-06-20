@@ -37,7 +37,7 @@ div.imageCover,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 300px;
+  gap: 8%;
   overflow: hidden;
   text-align: center;
 }
@@ -77,6 +77,21 @@ div.frontText {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+.frontSmallText {
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2px;
+  margin-bottom: -10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 @keyframes fronttextAnim{
@@ -380,21 +395,14 @@ button {
   scroll-snap-type: x mandatory; /* Optional: for snap scrolling */
 }
 
-
-/* p {
- 
-  color: #dde1e5;
-  align-self: center;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 700;
-  letter-spacing: 5px;
-  line-height: normal;
-  animation: appear-disappear linear both;
-  animation-timeline: view(block 25% 10%);
-} */
-
-
+.MainProjects {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 5% 10%;
+  height: 100%;
+}
 
 .panel {
   display: flex;
@@ -537,7 +545,7 @@ main {
 
 main div {
   display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 5px;
     padding: 5% 10%;

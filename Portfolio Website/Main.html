@@ -64,19 +64,63 @@
 
     <!-- HERO SECTION -->
     <div class="imageCover">
+        
         <div class="frontText">
             <div class = "pageTitle">Portfolio</div>
         </div>
-        <div class="scrollBox">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
-                <path d="M7.41228 20.722C7.8028 21.1126 8.43597 21.1126 8.82649 20.722L15.1905 14.3581C15.581 13.9675 15.581 13.3344 15.1905 12.9439C14.7999 12.5533 14.1668 12.5533 13.7762 12.9439L8.11938 18.6007L2.46253 12.9439C2.07201 12.5533 1.43884 12.5533 1.04832 12.9439C0.657793 13.3344 0.657793 13.9675 1.04832 14.3581L7.41228 20.722ZM7.11938 0.223877L7.11938 20.0149H9.11938L9.11938 0.223877L7.11938 0.223877Z" fill="white" />
-            </svg>
+
+        <div class="projectsGrid">
+            <div class="projectCard" onclick="openProjectMain('pages/project1.html','Project 1')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Project 1">
+                </div>
+                <div class="projectInfo">
+                    <h3>Project 1</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+            <div class="projectCard" onclick="openProjectMain('pages/project2.html','Project 2')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Project 2">
+                </div>
+                <div class="projectInfo">
+                    <h3>Project 2</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+            <div class="projectCard" onclick="openProjectMain('pages/project3.html','Project 3')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Project 3">
+                </div>
+                <div class="projectInfo">
+                    <h3>Project 3</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+            <div class="projectCard" onclick="openProjectMain('pages/project4.html','Project 4')">
+                <div class="projectImage">
+                    <img src="img\main\Dice Project.png" alt="Project 4">
+                </div>
+                <div class="projectInfo">
+                    <h3>Project 4</h3>
+                    <p>[Have to fill in short description]</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="frontSmallText">
+            <div> Digital Projects</div>
+            <div class="scrollBox">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 16 22" fill="none">
+                    <path d="M7.41228 20.722C7.8028 21.1126 8.43597 21.1126 8.82649 20.722L15.1905 14.3581C15.581 13.9675 15.581 13.3344 15.1905 12.9439C14.7999 12.5533 14.1668 12.5533 13.7762 12.9439L8.11938 18.6007L2.46253 12.9439C2.07201 12.5533 1.43884 12.5533 1.04832 12.9439C0.657793 13.3344 0.657793 13.9675 1.04832 14.3581L7.41228 20.722ZM7.11938 0.223877L7.11938 20.0149H9.11938L9.11938 0.223877L7.11938 0.223877Z" fill="white" />
+                </svg>
+            </div>
         </div>
     </div>
 
     <div class="bg"></div>
 
-    <!-- MAIN PROJECTS SECTION -->
+    <!-- SIDE PROJECTS SECTION -->
     <main>
         <h2 class="projectsTitle">Digital Projects</h2>
         <div class="projectsGrid">
@@ -156,6 +200,12 @@
             sessionStorage.setItem('projectName', projectName);
             sessionStorage.setItem('projectDescription', projectDescription);
             window.location.href = 'project-detail.html';
+        }
+
+         function openProjectMain(projectUrl, projectName) {
+            sessionStorage.setItem('projectUrl', projectUrl);
+            sessionStorage.setItem('projectName', projectName);
+            window.location.href = 'project-detailMain.html';
         }
     </script>
 
