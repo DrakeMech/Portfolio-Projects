@@ -37,7 +37,7 @@ div.imageCover,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8%;
+  gap: 2%;
   overflow: hidden;
   text-align: center;
 }
@@ -61,7 +61,7 @@ div.frontText {
   flex-direction: column;
   align-items: center;
   gap: 23px;
-  padding-top: 17%;
+  padding-top: 10%;
   padding-bottom: inherit;
   text-align: center;
   color: #efe8e8;
@@ -73,6 +73,7 @@ div.frontText {
   animation-name: fronttextAnim;
   animation-duration: 5s;
   animation-iteration-count: infinite;
+  animation-delay: 0s;
   
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -425,16 +426,33 @@ main {
 
 .projectsTitle {
   text-align: center;
-  font-size: 48px;
+  font-size: 38px;
   font-weight: 700;
   color: #dde1e5;
   letter-spacing: 3px;
-  margin-bottom: 60px;
-  padding-top: 40px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  animation: fronttextAnim 5s ease-in-out infinite both;
+  animation-delay: 0s;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .projectsGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 0 40px 60px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.projectsGridCover {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-snap-type: x mandatory; /* Snap scrolling */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   padding: 0 40px 60px 40px;
