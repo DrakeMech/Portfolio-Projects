@@ -18,3 +18,53 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// have to look this up
+        function openProject(projectUrl, projectName, projectDescription) {
+            sessionStorage.setItem('projectUrl', projectUrl);
+            sessionStorage.setItem('projectName', projectName);
+            sessionStorage.setItem('projectDescription', projectDescription);
+            window.location.href = 'project-detail.html';
+        }
+
+         function openProjectMain(projectUrl, projectName) {
+            sessionStorage.setItem('projectUrl', projectUrl);
+            sessionStorage.setItem('projectName', projectName);
+            window.location.href = 'project-detailMain.html';
+        }
+
+        // Dots and center-snap handler (Using the IIFE to execute it right away)
+        (function(){
+            const cover = document.querySelector('.projectsGridCover');
+            const dotsContainer = document.querySelector('.heroDots');
+            if(!cover || !dotsContainer) return;
+
+            const cards = Array.from(cover.querySelectorAll('.projectCard'));
+            cards.forEach((c,i)=>{
+                const d = document.createElement('div');
+                d.className = 'dot';
+                d.dataset.index = i;
+                d.addEventListener('click', ()=>{
+                    const card = cards[i];
+                    if(card) card.scrollIntoView({behavior:'smooth', inline:'center'});
+                });
+                dotsContainer.appendChild(d);
+            });
+
+            const dotElems = Array.from(dotsContainer.children);
+
+            const io = new IntersectionObserver((entries)=>{
+                entries.forEach(entry=>{
+                    const idx = cards.indexOf(entry.target);
+                    if(idx === -1) return;
+                    if(entry.intersectionRatio > 0.5){
+                        dotElems.forEach(d=>d.classList.remove('active'));
+                        dotElems[idx].classList.add('active');
+                    }
+                });
+            }, {root: cover, threshold: [0.5]});
+
+            cards.forEach(c=> io.observe(c));
+
+            if(dotElems[0]) dotElems[0].classList.add('active');
+        })();
