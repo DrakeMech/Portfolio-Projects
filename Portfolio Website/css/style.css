@@ -388,6 +388,8 @@ button {
   color: #dde1e5;
   align-self: center;
   font-size: 30px;
+  /* Ensure scrolling doesn't hide content behind fixed header */
+  scroll-margin-top: 96px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: 5px;
@@ -405,11 +407,29 @@ button {
   height: 100%;
 }
 
+.frontSmallText .controls{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.viewDigitalBtn{
+  background: rgba(221,225,229,0.08);
+  color: #dde1e5;
+  border: 1px solid #333;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+.viewDigitalBtn:hover{transform: translateY(-2px); background: rgba(221,225,229,0.12)}
 .panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1px;
+  .viewDigitalBtn{ padding: 8px 10px; font-size: 14px }
   border-radius: 15px;
   scroll-snap-align: center; /* Snap to center */
   min-width: 100px; /* Adjust as needed */
@@ -807,5 +827,240 @@ main {
   flex-direction: row;
   overflow-y: hidden;
 
+}
+
+/* Responsive adjustments for phones and small screens */
+@media (max-width: 768px) {
+  .imageCover {
+    height: auto;
+    min-height: 60vh;
+    padding-bottom: 40px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .frontText {
+    padding-top: 12%;
+    font-size: 48px;
+    gap: 12px;
+  }
+
+  .frontSmallText {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+
+  .projectsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px 40px 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  /* Keep hero tiles horizontally scrollable on small screens */
+  .projectsGridCover {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0 18px 28px 18px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    scroll-snap-stop: always;
+    scroll-behavior: smooth;
+    align-items: center;
+    scroll-padding: 0 50%;
+  }
+
+  .projectsGridCover .projectCard {
+    min-width: 300px;
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  /* pagination dots under hero */
+  .heroDots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .heroDots .dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    transition: background 160ms, transform 160ms;
+  }
+
+  .heroDots .dot.active{
+    background: rgba(255,255,255,1);
+    transform: scale(1.15);
+  }
+
+  .projectImage {
+    height: 160px;
+  }
+
+  .projectInfo h3 {
+    font-size: 16px;
+  }
+
+  .projectInfo p {
+    font-size: 13px;
+  }
+
+  #sideBar {
+    width: 80%;
+  }
+
+  .menu {
+    padding: 1.5% 4%;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageCover {
+    min-height: 55vh;
+    padding-bottom: 30px;
+  }
+
+  .frontText {
+    padding-top: 16%;
+    font-size: 34px;
+  }
+
+  .pageTitle {
+    font-size: 28px;
+  }
+
+  .projectsTitle {
+    font-size: 26px;
+    padding-top: 8px;
+  }
+
+  .projectImage {
+    height: 120px;
+  }
+
+  .projectInfo h3 {
+    font-size: 15px;
+  }
+
+  .projectInfo p {
+    font-size: 13px;
+  }
+
+  .projectsGridCover {
+    padding: 0 12px 30px 12px;
+  }
+
+  /* Header/menu layout for phones */
+  .menu {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 12px 14px;
+    bottom: 15px;
+  }
+
+  .menu .name {
+    position: static;
+    transform: none;
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #dde1e5;
+  }
+
+  .menuButton {
+    bottom: 18px;
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 0;
+  }
+
+  .menuBtn div {
+    width: 24px;
+    height: 4px;
+  }
+
+  a.logo {
+    display: none;
+  }
+
+  /* Sidebar layout for phones */
+  #sideBar {
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    padding: 5% 4% 6% 4%;
+    background-color: rgba(20, 20, 20, 0.92);
+    border-left: none;
+    backdrop-filter: blur(12px);
+    z-index: 20;
+    overflow-y: auto;
+  }
+
+  #sideBar #close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wrapp {
+    gap: 36px;
+    height: auto;
+  }
+
+  .wrapp p {
+    font-size: 16px;
+  }
+
+  .wrappBio {
+    gap: 28px;
+  }
+
+  .bioButton,
+  .wrappBio button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .titleEd {
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+
+  .infoEd div {
+    font-size: 14px;
+    gap: 20px;
+  }
 }
 

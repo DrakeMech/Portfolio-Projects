@@ -73,9 +73,9 @@
         <div class="projectsTitle"> Main Projects</div>
 
         <div class="projectsGridCover">
-            <div class="projectCard" onclick="openProjectMain('pages/project1.html','Project 1')">
+            <div class="projectCard" onclick="openProjectMain('pages/project1.html','Oikatonika')">
                 <div class="projectImage">
-                    <img src="img\main\Project1Cover.jpg" alt="Project 1">
+                    <img src="img/main/Trimmed/Project1CoverT.jpg" alt="Project 1">
                 </div>
                 <div class="projectInfo">
                     <h3>Oikatonika</h3>
@@ -84,32 +84,34 @@
             </div>
             <div class="projectCard" onclick="openProjectMain('pages/project2.html','Project 2')">
                 <div class="projectImage">
-                    <img src="img\main\Dice Project.png" alt="Project 2">
+                    <img src="img/main/Trimmed/Studio2CoverPhotoT.jpg" alt="Project 2">
                 </div>
                 <div class="projectInfo">
                     <h3>Embodied Feedback of Materials in DMI</h3>
-                    <p>[Have to fill in short description]</p>
+                    <p>Material exploration of 7 prototype samples emphasizing the relationship between embodied gestural interactions and sonic expression.</p>
                 </div>
             </div>
             <div class="projectCard" onclick="openProjectMain('pages/project3.html','Project 3')">
                 <div class="projectImage">
-                    <img src="img\main\Dice Project.png" alt="Project 3">
+                    <img src="img/main/studio1Cover.png" alt="Project 3">
                 </div>
                 <div class="projectInfo">
                     <h3>AR in Plantcare</h3>
-                    <p>[Have to fill in short description]</p>
+                    <p>An AR design project catered to build awareness of the user's historical interactions with their home plants.</p>
                 </div>
             </div>
             <div class="projectCard" onclick="openProjectMain('pages/project4.html','Project 4')">
                 <div class="projectImage">
-                    <img src="img\main\Dice Project.png" alt="Project 4">
+                    <img src="img/main/Project4Cover.jpg" alt="Project 4">
                 </div>
                 <div class="projectInfo">
                     <h3>Non-Newtonian Fluid UI for Sonic Manipulation</h3>
-                    <p>[Have to fill in short description]</p>
+                    <p>Thesis project exploring the inherent kinetic feedback of Oobleck, a non-Newtonian fluid, to enable novel forms of sonic manipulation through its non-linear properties.</p>
                 </div>
             </div>
         </div>
+
+        <div class="heroDots" aria-hidden="false"></div>
 
         <div class="frontSmallText">
             <div> Digital Projects</div>
@@ -208,6 +210,42 @@
             sessionStorage.setItem('projectName', projectName);
             window.location.href = 'project-detailMain.html';
         }
+
+        // Dots and center-snap handler (Using the IIFE to execute it right away)
+        (function(){
+            const cover = document.querySelector('.projectsGridCover');
+            const dotsContainer = document.querySelector('.heroDots');
+            if(!cover || !dotsContainer) return;
+
+            const cards = Array.from(cover.querySelectorAll('.projectCard'));
+            cards.forEach((c,i)=>{
+                const d = document.createElement('div');
+                d.className = 'dot';
+                d.dataset.index = i;
+                d.addEventListener('click', ()=>{
+                    const card = cards[i];
+                    if(card) card.scrollIntoView({behavior:'smooth', inline:'center'});
+                });
+                dotsContainer.appendChild(d);
+            });
+
+            const dotElems = Array.from(dotsContainer.children);
+
+            const io = new IntersectionObserver((entries)=>{
+                entries.forEach(entry=>{
+                    const idx = cards.indexOf(entry.target);
+                    if(idx === -1) return;
+                    if(entry.intersectionRatio > 0.5){
+                        dotElems.forEach(d=>d.classList.remove('active'));
+                        dotElems[idx].classList.add('active');
+                    }
+                });
+            }, {root: cover, threshold: [0.5]});
+
+            cards.forEach(c=> io.observe(c));
+
+            if(dotElems[0]) dotElems[0].classList.add('active');
+        })();
     </script>
 
 </body>
