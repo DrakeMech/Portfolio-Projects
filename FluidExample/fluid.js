@@ -209,5 +209,5 @@ function draw() {
   fluid.step();
   fluid.renderD();
 
-  t += 0.01;
+  t += 0.05;
 }
