@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         name.style.opacity = logo.style.opacity = opacity;
 
         // Change the background color of the menu buttons based on the scroll position
-        const buttonBackgroundColor = isScrolledPastHero ? '#999' : '#FFF';
+        const buttonBackgroundColor = isScrolledPastHero ? '#e7e7e7' : '#FFF';
         menuBtnDivs.forEach(btnDiv => {
             btnDiv.style.background = buttonBackgroundColor;
         });

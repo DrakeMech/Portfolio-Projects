@@ -1,14 +1,24 @@
 class Mold {
   updateHeadingTowardsCursor() {
-    // Use gyroX and gyroY instead of mouseX and mouseY
-    let targetAngle = atan2(gyroY - this.y, gyroX - this.x);
-    let noiseValue = noise(this.x * 0.2, this.y * 0.1) * 200;
-    targetAngle += radians(noiseValue);
-    targetAngle = degrees(targetAngle);
-  
-    // Smoothly transition the heading towards the target angle
-    let turnSpeed = 100; // Determines how quickly they adjust direction
-    this.heading = lerp(this.heading, targetAngle, turnSpeed / 100);
+    const widthScale = max(width, 1);
+    const heightScale = max(height, 1);
+
+    // Convert the droplet and the current gyroscope point into normalized screen-space values.
+    const dropletX = constrain(this.x / widthScale, 0, 1);
+    const dropletY = constrain(this.y / heightScale, 0, 1);
+    const targetX = constrain(gyroX / widthScale, 0, 1);
+    const targetY = constrain(gyroY / heightScale, 0, 1);
+
+    // Create a smoother flow direction that gently bends toward the normalized target.
+    let targetAngle = atan2(targetY - dropletY, targetX - dropletX);
+    let turbulence = noise(dropletX * 2.2, dropletY * 2.2, frameCount * 0.01) * PI * 0.45;
+    targetAngle += turbulence - PI * 0.225;
+
+    // Smoothly transition the heading toward the flow direction.
+    let desiredHeading = degrees(targetAngle);
+    let delta = desiredHeading - this.heading;
+    delta = ((delta + 180) % 360 + 360) % 360 - 180;
+    this.heading += delta * 0.08;
   }
   
   constructor() {
@@ -23,14 +33,14 @@ class Mold {
     this.vx = cos(this.heading);
     this.vy = sin(this.heading);
     this.rotAngle = 45;
-    this.stop = false // Boolean variable to stop molds from moving 
-    
+    this.stop = false; // Boolean variable to stop molds from moving
+
     // Sensor variables
     this.rSensorPos = createVector(0, 0);
     this.lSensorPos = createVector(0, 0);
     this.fSensorPos = createVector(0, 0);
-    this.sensorAngle = 45;
-    this.sensorDist = 10;
+    this.sensorAngle = 35;
+    this.sensorDist = max(8, min(width, height) * 0.015);
     
   }
   
@@ -40,10 +50,11 @@ class Mold {
       this.vx = 0;
       this.vy = 0;
     } else {
-      this.vx = cos(this.heading);
-      this.vy = sin(this.heading);
+      let speed = 1.1 + noise(this.x * 0.003, this.y * 0.003, frameCount * 0.002) * 0.7;
+      this.vx = cos(this.heading) * speed;
+      this.vy = sin(this.heading) * speed;
     }
-    
+
     // Using % Modulo expression to wrap around the canvas
     this.x = (this.x + this.vx + width) % width;
     this.y = (this.y + this.vy + height) % height;
