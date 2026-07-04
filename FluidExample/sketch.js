@@ -1,63 +1,28 @@
-let molds = [];
-let num = 500;
-let d;
-
 let gyroX = 0;
 let gyroY = 0;
-let gyroButton; // Add this at the top
 
-// Request permission and listen for device orientation
-function setup() {
-  pixelDensity(0.5); // Add this for lower-res rendering
-  createCanvas(window.innerWidth, window.innerHeight);
-  angleMode(DEGREES);
-  d = pixelDensity();
-
-  // Create the gyro access button for iOS
+function setupGyroControls() {
   if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
-    gyroButton = createButton('Enable Gyro Control');
-    gyroButton.position(20, 20);
-    gyroButton.style('font-size', '18px');
-    gyroButton.mousePressed(requestGyroAccess);
+    const button = createButton('Enable Gyro Control');
+    button.position(20, 20);
+    button.style('font-size', '18px');
+    button.mousePressed(async () => {
+      try {
+        const permission = await DeviceOrientationEvent.requestPermission();
+        if (permission === 'granted') {
+          window.addEventListener('deviceorientation', handleGyro, true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      button.remove();
+    });
   } else {
-    // Non-iOS devices
-    window.addEventListener('deviceorientation', handleGyro);
+    window.addEventListener('deviceorientation', handleGyro, true);
   }
-
-  for (let i=0; i<num; i++) {
-    molds[i] = new Mold();
-  } 
 }
-
-
 
 function handleGyro(event) {
-  // event.beta: front-back tilt [-180,180], event.gamma: left-right tilt [-90,90]
   gyroX = map(event.gamma, -90, 90, 0, width);
   gyroY = map(event.beta, -180, 180, 0, height);
-}
-
-let frameSkip = 3;
-function draw() {
-  background(1, 10);
-  if (frameCount % frameSkip === 0) loadPixels();
-  loadPixels();
-
-  for (let i = 0; i < num; i++) {
-    if (key == "s") {
-      // If "s" key is pressed, molds stop moving
-      molds[i].stop = true;
-      if (frameCount % frameSkip === 0) loadPixels();
-      updatePixels();
-      noLoop();
-    } else {
-      molds[i].stop = false;
-    }
-    
-    // Make each mold head toward the cursor
-    molds[i].updateHeadingTowardsCursor();
-
-    molds[i].update();
-    molds[i].display();
-  }
 }
