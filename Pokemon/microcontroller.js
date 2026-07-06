@@ -72,7 +72,17 @@ function onData(event) {
 };
 
 function onFail(error) {
-  console.log(`Failed to connect to device: ${error}`);
+  const message = error?.message || String(error);
+  console.error(`Failed to connect to device: ${message}`);
+
+  if (typeof navigator === 'undefined' || !navigator.bluetooth) {
+    console.error('Web Bluetooth is not available in this browser context. Open this page from http://localhost or https:// in Chrome or Edge.');
+    return;
+  }
+
+  if (message.includes('requestDevice')) {
+    console.error('The browser blocked the Bluetooth picker. Make sure Bluetooth permission is allowed and the page is running from localhost or HTTPS.');
+  }
 }
 
 function onConnect(puck) {
@@ -87,6 +97,16 @@ function onConnect(puck) {
 // Connect to a device
 async function connect() {
   console.log("Connecting to device...");
+
+  if (typeof navigator === 'undefined' || !navigator.bluetooth) {
+    onFail(new Error('Web Bluetooth is not available in this browser context. Use Chrome or Edge on localhost or HTTPS.'));
+    return;
+  }
+
+  if (typeof Espruino?.puck !== 'function') {
+    onFail(new Error('The Espruino Bluetooth helper is not available.'));
+    return;
+  }
 
   // Filter by name, if defined in settings
   const options = settings.device.length > 0 ? { name: settings.device } : {};
