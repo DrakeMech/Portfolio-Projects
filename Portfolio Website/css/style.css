@@ -831,6 +831,7 @@ main {
 
 /* Responsive adjustments for phones and small screens */
 @media (max-width: 768px) {
+
   .imageCover {
     height: auto;
     min-height: 60vh;
