@@ -35,35 +35,60 @@
         }
 
         .videoContainer {
-            margin: 40px 0;
             position: relative;
-            width: 100%;
-        }
-
-        .videoWrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
             overflow: hidden;
             border-radius: 8px;
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
         }
 
-        .videoWrapper iframe,
-        .videoWrapper video {
+        .videoContainer iframe,
+        .videoContainer video {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: none;
             border-radius: 8px;
         }
 
-        .videoLabel {
+        .moreInfoButton {
+            padding: 14px 26px;
+            margin: 28px 0 12px;
+            background: rgba(148, 148, 148, 0.788);
+            color: #e8e2e2;
+            border: 1px solid rgba(221, 225, 229, 0.25);
+            border-radius: 999px;
             font-size: 16px;
-            color: #999;
-            margin-top: 10px;
-            font-style: italic;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: left 1s ease, margin 1s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+            position: sticky;
+            top: 50px;
+            left: 0;
+            z-index: 1;
+        }
+
+        .moreInfoButton:hover {
+            background: rgba(221, 225, 229, 0.14);
+            border-color: rgba(221, 225, 229, 0.45);
+        }
+
+        .moreInfoButton.stuck {
+            transform: translateX(-600px);
+            transition: 1s ease;
+        }
+
+        #moreInfo {
+            display: none;
+            margin-top: 18px;
+            color: #d0caca;
+        }
+
+        #moreInfo.open {
+            display: block;
         }
 
         .coverImage {
@@ -75,3 +100,4 @@
             border-radius: 10px;
             box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
         }
+

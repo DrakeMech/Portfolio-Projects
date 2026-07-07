@@ -11,15 +11,17 @@
     <script src="../js/main.js"></script>
     <script src="../js/sideBar.js"></script>
 
-    <title>[Project Title] - Stefan Cristache Portfolio</title>
+    <title>Oikotonika - Stefan Cristache Portfolio</title>
 
 </head>
 
 <body>
 
-    <div class="imageCover" style="background-image: linear-gradient(0deg, #131313 0%, rgba(0, 0, 0, 0.00) 10%), url('../img/main/Dice Project.png');">
+    <div class="imageCover" style="background-image: linear-gradient(0deg, #131313 0%, rgba(34, 34, 34, 0.253) 10%), url('../img/main/Trimmed/Studio2CoverPhotoT.jpg');">
+         
         <div class="frontText">
-            <div class="pageTitle">[Project Title]</div>
+            <div class="projectInfo"><h3>Stefan Cristache</h3></div>
+            <div class="pageTitle">Touch: Embodied Feedback of Materials in DMI</div>
         </div>
     </div>
 
@@ -28,59 +30,77 @@
     <main>
         <div class="projectContent">
 
-            <img src="../img/main/Dice Project.png" alt="Project Cover" class="coverImage">
+            <div>
+            <h1>Embodied Feedback of Materials in DMI</h1>
+            <h3>Exploring the Relationship Between Embodied Interaction and Sonic Feedback</h3>
+             </div>
+            <h4><strong>Type:</strong> Collaborative Work / Research & Design Project</h4>
+            <h4><strong>Role:</strong> Development, Interface Design, Research, Sketching, Prototyping</h4>
+            <h4><strong>Team:</strong> Individual</h4>
+            <h4><strong>Tools & Libraries:</strong> C++, Arduino IDE, ControlSurface.h, Laser Machining, Hardware Integration</h4>
 
-            <h1>[Project Title]</h1>
-            <h3>[Project Subtitle or Tagline]</h3>
+            <img src="../img/main/Trimmed/Studio2CoverPhotoT.jpg" alt="Project Cover" class="coverImage">
 
             <h2>Overview</h2>
-            <p>[Add project overview paragraph here. Describe the main concept, purpose, and what you were trying to achieve.]</p>
-            <p>[Add more details about the project context and background.]</p>
 
+            <p>
+                <strong>Touch: Embodied Feedback of Materials in DMI</strong> is a material exploration project that seeks to understand the relationship between embodied interaction with materials and sonic feedback in digital musical instruments.
+            </p>
 
-            <h2>Demo Video</h2>
-            <div class="videoContainer">
-                <div class="videoWrapper">
-
-                    <iframe src="https://www.youtube.com/embed/[VIDEO_ID]" allowfullscreen="" loading="lazy"></iframe>
+            <p>
+                One of the most common issues with digital musical instruments is the lack of tactile feedback, which can lead to a disconnect between the performer and the instrument. This project aims to address this issue by exploring how different materials can provide embodied feedback to the performer, enhancing their perception of the instrument in relation to the sound that is being produced.
+            </p>
+            <p> Although this is a common issue between music instrument makers, a lot of them would embed tactile feedback mechanisms into their designs to improve the user experience. However, in comperison to its acoustic and electric counterparts, the sonic output is relational and not mechanical, losing the direct connection between the performer and the sound.</p>
+            <p> This project led into exploring 7 materials considering their tacticle properties and affordences, embedding 4 sensors throught each iterration. The prototypes were conducted with n (forgot how many, around 12) performers and music makers.</p>
+            
+            <h2>Demo Video (No-DEMO yet, I forgot to edit it.)</h2>
+                <div class="videoContainer">
+                    <iframe width="962" height="541" src="https://www.youtube.com/embed/HcfzMQQNhB4?list=PLYhfDj5oObw6McC4VcidlaH3cQPSno_nN" title="Oikotonica Final" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <p class="videoLabel">YouTube Demo - Replace [VIDEO_ID] with your YouTube video ID</p>
-            </div>
 
-            <h2>Process Video</h2>
-            <div class="videoContainer">
-                <div class="videoWrapper">
-                    <video controls>
-                        <source src="../videos/your-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+            <h3>Do you want to know more?</h3>
+            <button type="button" class="moreInfoButton" aria-expanded="false">MORE INFO</button>
+            <div id="moreInfo" class="collapsed">
+                <div id="moreInfoContent">
+                    <h2>Design Process & Methods</h2>
+                    <p>
+                        The methods for Oikotonika was participatory design with focus on user testing and feebdack of 3 musicians, a DJ, and a professional sonifying artist. The design process was iterative, with four iterations throughout the timeline.
+                    </p>
+                    <img src="../img/main/OikaTimeline.png" alt="Oikotonika's timeline iterations" class="coverImage">
+                    <p>
+                        This design process had the goal to understand how we approach the user's possible behaviors and interactions with the instrument, resulting in different setups and configurations, as well as different opportunities revealed through participatory observations and interviews.
+                    </p>
+
+                    <h2>Technical Details</h2>
+                    <h3>Technologies Used</h3>
+                    <p>The base of Oikotonika is build on two Arduino Nano Sense 33 BLE and three built-in sensors (HTS221, APDS-9960, PDM). Each have been mapped and converted into MIDI CC signals, through the use of MIDIUSB library. One is the receiver connected to the computer, the other which has the Oikotonika body is the sender.</p>
+                    <img src="../img/main/OikaSchema.png" alt="Oikotonika's MIDI CC mapping Schema" class="coverImage">
+
+                    <!-- 
+                    Oikotonica communicates with users through a sonified “discussion” where its responses affect how the instrument is moved through environments, is placed in the space, and the bodily interactions it incentivizes. 
+                    This feedback loop opens opportunities for an exploratory approach during the interactions. It serves as a probe for novel interaction styles and performance acts, inspiring the development of future DMIs.
+                    Users who independently created a sonification setup constructed live sonified performances. This starkly differs from traditional sonification, which sees data interpretation as a process occurring during post-production. 
+                    Oikotonica can thus serve during live performances or help artists iterate while producing. By allowing the performer to experiment and create connections with sounds across spaces, users connected with their environment. Body and sensors blend for new forms of nuanced play.
+                    -->
+
+                    <h2>Key Learnings</h2>
+                    <p>This project was one of the most challenging, yet rewarding experience. I've learned a lot working with integrating MIDI data and implementing sensors within a creative context for sound. This project also inspired me to explore further in TUI for music and sonic interactions.</p>
+                    <p>Within my years studying Interaction Design, I've come to appreciate the uniqeness of designing interfaces for sound. It also taught me how tangibility and embodiment plays a big role in expressive interactions.</p>
+                    <p>For Oikotonika, me and my team realised that the concept is not only a interactive tool, but a medium of dialogue between the environment and the user. The space was the place where the sonifying "discussion" was acted upon, while the user's movements and interactions shaped the sonic output in relation to it.</p>
+                    <p>This resulted into a live sonified performance and a tool to assist artists to iterate during production stages, revealing experimental workflows connected with sounds across spaces and environments while the body is the anchor between the two.</p>
+
+                    <h2>Future Improvements</h2>
+                    <ul>
+                        <li>A more robust visual feedback for the user to ease the learning gap between the user and the environment.</li>
+                        <li>An additional software feature to adjust the sensitivity of the sensors.</li>
+                    </ul>
+
+                    <!-- <h2>Links & Resources</h2>
+                    <p><a href="#" style="color: #7dd3fc;">GitHub Repository</a> - [Add link to your GitHub repo]</p>
+                    <p><a href="#" style="color: #7dd3fc;">Live Demo</a> - [Add link to live project if available]</p> -->
+
                 </div>
-                <p class="videoLabel">Local Video - Upload your video file to /videos/ folder and update the src</p>
             </div>
-
-            <h2>Technical Details</h2>
-            <h3>Technologies Used</h3>
-            <p>[List and describe the technologies, languages, libraries, and tools used in this project.]</p>
-
-            <h3>Key Features</h3>
-            <p>[Describe the main features and functionality of the project.]</p>
-            <p>[Add more features as needed.]</p>
-
-            <h2>Challenges & Solutions</h2>
-            <p>[Describe challenges you faced during development and how you solved them.]</p>
-            <p>[Add additional challenges and solutions.]</p>
-
-            <h2>Key Learnings</h2>
-            <p>[Discuss what you learned from this project.]</p>
-            <p>[Add more insights and takeaways.]</p>
-
-            <h2>Future Improvements</h2>
-            <p>[List potential improvements or features for future iterations.]</p>
-
-            <h2>Links & Resources</h2>
-            <p><a href="#" style="color: #7dd3fc;">GitHub Repository</a> - [Add link to your GitHub repo]</p>
-            <p><a href="#" style="color: #7dd3fc;">Live Demo</a> - [Add link to live project if available]</p>
-
         </div>
     </main>
 

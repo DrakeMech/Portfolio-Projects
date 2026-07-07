@@ -17,6 +17,25 @@ document.addEventListener('DOMContentLoaded', function () {
             btnDiv.style.background = buttonBackgroundColor;
         });
     });
+
+    const moreInfoButton = document.querySelector('.moreInfoButton');
+    const moreInfo = document.getElementById('moreInfo');
+    if (moreInfoButton && moreInfo) {
+        moreInfoButton.addEventListener('click', function () {
+            const isOpen = moreInfo.classList.toggle('open');
+            moreInfoButton.textContent = isOpen ? 'LESS INFO' : 'MORE INFO';
+            moreInfoButton.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        window.addEventListener('scroll', function () {
+            const rect = moreInfoButton.getBoundingClientRect();
+            if (rect.top <= 50) {
+                moreInfoButton.classList.add('stuck');
+            } else {
+                moreInfoButton.classList.remove('stuck');
+            }
+        });
+    }
 });
 
 // have to look this up
