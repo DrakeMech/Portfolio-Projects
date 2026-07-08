@@ -11,7 +11,7 @@
     <script src="../js/main.js"></script>
     <script src="../js/sideBar.js"></script>
 
-    <title>Oikotonika - Stefan Cristache Portfolio</title>
+    <title>Tangible Feedback in DMI - Stefan Cristache Portfolio</title>
 
 </head>
 
@@ -21,7 +21,7 @@
          
         <div class="frontText">
             <div class="projectInfo"><h3>Stefan Cristache</h3></div>
-            <div class="pageTitle">Touch: Embodied Feedback of Materials in DMI</div>
+            <div class="pageTitle">Tangible Feedback in DMI</div>
         </div>
     </div>
 
@@ -31,10 +31,10 @@
         <div class="projectContent">
 
             <div>
-            <h1>Embodied Feedback of Materials in DMI</h1>
-            <h3>Exploring the Relationship Between Embodied Interaction and Sonic Feedback</h3>
+            <h1>Tangible Feedback in DMI</h1>
+            <h3>Exploration of Interactive Deformable Materials for Nuanced Play</h3>
              </div>
-            <h4><strong>Type:</strong> Collaborative Work / Research & Design Project</h4>
+            <h4><strong>Type:</strong> RtD Project</h4>
             <h4><strong>Role:</strong> Development, Interface Design, Research, Sketching, Prototyping</h4>
             <h4><strong>Team:</strong> Individual</h4>
             <h4><strong>Tools & Libraries:</strong> C++, Arduino IDE, ControlSurface.h, Laser Machining, Hardware Integration</h4>
@@ -44,18 +44,19 @@
             <h2>Overview</h2>
 
             <p>
-                <strong>Touch: Embodied Feedback of Materials in DMI</strong> is a material exploration project that seeks to understand the relationship between embodied interaction with materials and sonic feedback in digital musical instruments.
+                <strong>Tangible Feedback in DMI</strong> is a material exploration project that seeks to understand the relationship between embodied interaction with materials and sonic feedback in digital musical instruments.
             </p>
 
             <p>
                 One of the most common issues with digital musical instruments is the lack of tactile feedback, which can lead to a disconnect between the performer and the instrument. This project aims to address this issue by exploring how different materials can provide embodied feedback to the performer, enhancing their perception of the instrument in relation to the sound that is being produced.
             </p>
             <p> Although this is a common issue between music instrument makers, a lot of them would embed tactile feedback mechanisms into their designs to improve the user experience. However, in comperison to its acoustic and electric counterparts, the sonic output is relational and not mechanical, losing the direct connection between the performer and the sound.</p>
-            <p> This project led into exploring 7 materials considering their tacticle properties and affordences, embedding 4 sensors throught each iterration. The prototypes were conducted with n (forgot how many, around 12) performers and music makers.</p>
-            
-            <h2>Demo Video (No-DEMO yet, I forgot to edit it.)</h2>
+            <p> This project led into exploring 6 (Textile and dynamic) materials considering their tacticle properties and affordences, embedding 4 sensors throught each iterration (FSR, Gyroscope, Tilt Sensor, Accelerometer). The final concept used 6 inputs (Force Sensor Resistors) with a palm Accelerometer module both affecting two MIDI CC outputs, resulting in different responses in relation to user's gestures onto the materials.</p>
+            <img src="../img/main/TouchProbe.png" alt="Textile Based Probes" class="coverImage">
+            <img src="../img/main/TouchProbe2.png" alt="Dynamic Based Probes" class="coverImage">
+            <h2>Demo Video Example</h2>
                 <div class="videoContainer">
-                    <iframe width="962" height="541" src="https://www.youtube.com/embed/HcfzMQQNhB4?list=PLYhfDj5oObw6McC4VcidlaH3cQPSno_nN" title="Oikotonica Final" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe width="671" height="383" src="https://www.youtube.com/embed/1q6LVv2LhFA" title="Video Draft - Material Synth Prototype V2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
 
             <h3>Do you want to know more?</h3>
@@ -64,35 +65,29 @@
                 <div id="moreInfoContent">
                     <h2>Design Process & Methods</h2>
                     <p>
-                        The methods for Oikotonika was participatory design with focus on user testing and feebdack of 3 musicians, a DJ, and a professional sonifying artist. The design process was iterative, with four iterations throughout the timeline.
+                        The methods for this studio project were based on Research through Design, where the exploration of materials become the vehicles of inquire, probing each sensor and material to formulate new hypotheses and insights in relation to its affordances. Interviews and observations were conducted to formulate and identify phenomena and contextualize user's experiences with each probe.
                     </p>
-                    <img src="../img/main/OikaTimeline.png" alt="Oikotonika's timeline iterations" class="coverImage">
+                    <p> This was particularly done to re-iterate the possible implementations of the sensors with each probe available.</p>
                     <p>
                         This design process had the goal to understand how we approach the user's possible behaviors and interactions with the instrument, resulting in different setups and configurations, as well as different opportunities revealed through participatory observations and interviews.
                     </p>
 
                     <h2>Technical Details</h2>
                     <h3>Technologies Used</h3>
-                    <p>The base of Oikotonika is build on two Arduino Nano Sense 33 BLE and three built-in sensors (HTS221, APDS-9960, PDM). Each have been mapped and converted into MIDI CC signals, through the use of MIDIUSB library. One is the receiver connected to the computer, the other which has the Oikotonika body is the sender.</p>
-                    <img src="../img/main/OikaSchema.png" alt="Oikotonika's MIDI CC mapping Schema" class="coverImage">
-
-                    <!-- 
-                    Oikotonica communicates with users through a sonified “discussion” where its responses affect how the instrument is moved through environments, is placed in the space, and the bodily interactions it incentivizes. 
-                    This feedback loop opens opportunities for an exploratory approach during the interactions. It serves as a probe for novel interaction styles and performance acts, inspiring the development of future DMIs.
-                    Users who independently created a sonification setup constructed live sonified performances. This starkly differs from traditional sonification, which sees data interpretation as a process occurring during post-production. 
-                    Oikotonica can thus serve during live performances or help artists iterate while producing. By allowing the performer to experiment and create connections with sounds across spaces, users connected with their environment. Body and sensors blend for new forms of nuanced play.
-                    -->
+                    <p>The prototypes were built using two Arduino Nano Sense 33 BLE one being the sender and the other the receiver. The sender is reading the gyroscope and accelerometer data and the receiver is reading the FSR triggering the notes and reading the velocity, while processing both signals and averaging them to result in a more stable response of each input.</p>
+                    <img src="../img/main/SchemaTouch.png" alt="Schema of the Touch Interface" class="coverImage">
 
                     <h2>Key Learnings</h2>
-                    <p>This project was one of the most challenging, yet rewarding experience. I've learned a lot working with integrating MIDI data and implementing sensors within a creative context for sound. This project also inspired me to explore further in TUI for music and sonic interactions.</p>
-                    <p>Within my years studying Interaction Design, I've come to appreciate the uniqeness of designing interfaces for sound. It also taught me how tangibility and embodiment plays a big role in expressive interactions.</p>
-                    <p>For Oikotonika, me and my team realised that the concept is not only a interactive tool, but a medium of dialogue between the environment and the user. The space was the place where the sonifying "discussion" was acted upon, while the user's movements and interactions shaped the sonic output in relation to it.</p>
-                    <p>This resulted into a live sonified performance and a tool to assist artists to iterate during production stages, revealing experimental workflows connected with sounds across spaces and environments while the body is the anchor between the two.</p>
-
+                    <p>This project resulted in understanding how materials because a guide for performer's understanding of their way of operating the sonic output. This also presented a clear feedback loop between their gestures and the audio feedback, where the tactile feedback of the materials are the bridge between the two.</p>
+                    <p>Of course there have been some limitations in terms of delay, which affected slightly the responsiveness of the system. However that didn't impact their associations, it affected the effectiveness of producing rythms (something not that important in terms of research, but on practicality).</p>
+                    
                     <h2>Future Improvements</h2>
                     <ul>
-                        <li>A more robust visual feedback for the user to ease the learning gap between the user and the environment.</li>
-                        <li>An additional software feature to adjust the sensitivity of the sensors.</li>
+                        <li>The possibility to expange the range of sensors for these materials, which could also result in more nuanced embodied feedback. Also, the material physically contrain and guide specific gestural interactions, which act as physical support over the sonic transformation via play.</li>
+                        <img src="../img/main/GesturesExample.png" alt="Gesture graph example for the last 3 probe samples" class="coverImage">
+                        <li>Using MPE protocol could have also enhanced the responses on each input given.</li>
+                        <li>Material probing played the biggest role in understanding what gestures are more oportunistic to map and create nuanced embodied feedback for sounds that are being designed. This is influenced by the feedback loop produced by this conceptual framework.</li>
+                        <img src="../img/main/FeedbackLoop.png" alt="Feedback loop diagram" class="coverImage">
                     </ul>
 
                     <!-- <h2>Links & Resources</h2>
