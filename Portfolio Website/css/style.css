@@ -1,3 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 html {
   font-family: 'Space Grotesk', sans-serif;
 }
@@ -33,9 +40,11 @@ div.imageCover,
   width: 100%;
   height: 100vh;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 2%;
   overflow: hidden;
@@ -593,6 +602,12 @@ main div {
     padding: 5% 10%;
     height: 100%;
 }
+
+iframe {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  }
 
 .paragraphs {
   color: #000;
