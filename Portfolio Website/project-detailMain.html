@@ -17,6 +17,7 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
+            position: relative;
             background: #000;
             color: #dde1e5;
             overflow: hidden;
@@ -77,6 +78,40 @@
             flex-shrink: 0;
             max-height: 150px;
             overflow-y: auto;
+        }
+
+        @media (max-width: 600px) {
+            .projectHeader {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 5px;
+                padding: 16px;
+            }
+
+            .projectIframeContainer {
+                padding-bottom: 120px;
+            }
+
+            .projectTitle {
+                font-size: 15px;
+                text-align: center;
+                letter-spacing: 1px;
+            }
+
+            .projectInfo {
+                font-size: 5px;
+                padding: 10px;
+            }
+
+            .backButton {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
