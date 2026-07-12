@@ -609,6 +609,30 @@ iframe {
     display: block;
   }
 
+.bioTitle {
+  color: #dde1e5;
+  text-align: center;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 5px;
+}
+
+.bioImage {
+  width: 400px;
+  height: auto;
+  border-radius: 10%;
+  align-self: center;
+}
+.bioText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
 .paragraphs {
   color: #000;
 
