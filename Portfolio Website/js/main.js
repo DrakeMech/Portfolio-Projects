@@ -2,21 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const name = document.querySelector('.name');
     const logo = document.querySelector('.logo');
     const menuBtnDivs = document.querySelectorAll('.menuBtn div');
+    const imageCover = document.querySelector('.imageCover');
 
     // Scroll effect for menu
-    window.addEventListener('scroll', function () {
-        const isScrolledPastHero = window.scrollY > document.querySelector('.imageCover').offsetHeight - 100;
+    if (name && logo && imageCover) {
+        window.addEventListener('scroll', function () {
+            const isScrolledPastHero = window.scrollY > imageCover.offsetHeight - 100;
 
-        // Change the opacity of the name and logo based on the scroll position
-        const opacity = isScrolledPastHero ? 0 : 1;
-        name.style.opacity = logo.style.opacity = opacity;
+            // Change the opacity of the name and logo based on the scroll position
+            const opacity = isScrolledPastHero ? 0 : 1;
+            name.style.opacity = logo.style.opacity = opacity;
 
-        // Change the background color of the menu buttons based on the scroll position
-        const buttonBackgroundColor = isScrolledPastHero ? '#e7e7e7' : '#FFF';
-        menuBtnDivs.forEach(btnDiv => {
-            btnDiv.style.background = buttonBackgroundColor;
+            // Change the background color of the menu buttons based on the scroll position
+            const buttonBackgroundColor = isScrolledPastHero ? '#e7e7e7' : '#FFF';
+            menuBtnDivs.forEach(btnDiv => {
+                btnDiv.style.background = buttonBackgroundColor;
+            });
         });
-    });
+    }
 
     const moreInfoButton = document.querySelector('.moreInfoButton');
     const moreInfo = document.getElementById('moreInfo');
@@ -27,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function () {
             moreInfoButton.setAttribute('aria-expanded', String(isOpen));
         });
 
-        window.addEventListener('scroll', function () {
-            const rect = moreInfoButton.getBoundingClientRect();
-            if (rect.top <= 50) {
-                moreInfoButton.classList.add('stuck');
-            } else {
-                moreInfoButton.classList.remove('stuck');
-            }
-        });
+        // window.addEventListener('scroll', function () {
+        //     const rect = moreInfoButton.getBoundingClientRect();
+        //     if (rect.top <= 60) {
+        //         moreInfoButton.classList.add('stuck');
+        //     } else {
+        //         moreInfoButton.classList.remove('stuck');
+        //     }
+        // });
     }
 });
 

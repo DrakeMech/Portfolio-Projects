@@ -4,6 +4,7 @@
             margin: 0 auto;
             color: #e8e2e2;
             line-height: 1.8;
+            overflow-x: hidden;
         }
 
         .projectContent h1 {
@@ -66,6 +67,7 @@
             cursor: pointer;
             transition: left 1s ease, margin 1s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
             position: sticky;
+            position: -webkit-sticky;
             top: 50px;
             left: 0;
             z-index: 1;
@@ -77,11 +79,10 @@
         }
 
         .moreInfoButton.stuck {
-            /* shift the sticky button off-canvas responsively so it's accessible on different screens */
             transform: translateX(-35vw);
-            transition: 0.35s ease;
-            display: block;
+            transition: 1s ease;
         }
+
 
         /* Responsive adjustments for the stuck button so it centers better on various viewports */
         @media (max-width: 1200px) {

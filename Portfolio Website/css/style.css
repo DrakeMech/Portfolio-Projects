@@ -70,7 +70,6 @@ div.frontText {
   flex-direction: column;
   align-items: center;
   gap: 23px;
-  padding-top: 10%;
   padding-bottom: inherit;
   text-align: center;
   color: #efe8e8;
@@ -438,13 +437,15 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 1px;
-  .viewDigitalBtn{ padding: 8px 10px; font-size: 14px }
   border-radius: 15px;
   scroll-snap-align: center; /* Snap to center */
   min-width: 100px; /* Adjust as needed */
   flex-shrink: 0; /* Prevent panels from shrinking */
   transition: transform 0.5s;
 }
+
+.viewDigitalBtn{ padding: 8px 10px; font-size: 14px }
+  
 
 /* New Grid Layout Styles */
 main {
@@ -773,6 +774,7 @@ main {
   margin: 0;
   justify-content: center;
   align-items: center; /* Optional: for vertical centering */
+  overflow-x: hidden;
 }
 
 .bg {
