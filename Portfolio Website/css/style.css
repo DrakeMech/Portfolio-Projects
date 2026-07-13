@@ -391,6 +391,12 @@ button {
   transform: scale(1.1);
 }
 
+@media (max-width: 768px) {
+  .infoEd {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
 .mainSection p{
   color: #dde1e5;
